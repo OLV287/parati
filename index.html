@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dedicatoria</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    .poem {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      z-index: 2;
+      font-size: 1.3rem;
+      line-height: 2rem;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 30px #ff66cc;
+      animation: glow 4s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 30px #ff66cc; }
+      50% { box-shadow: 0 0 60px #ff66cc; }
+    }
+
+    .poem::before {
+      content: '“';
+      font-size: 4rem;
+      color: #ff66cc;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+    }
+
+    .poem::after {
+      content: '”';
+      font-size: 4rem;
+      color: #ff66cc;
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      opacity: 0.9;
+      animation: heartRain linear forwards;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes heartRain {
+      0% {
+        transform: translateY(-50px) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .poem {
+        font-size: 1.1rem;
+        line-height: 1.6rem;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🌟 Estrellas -->
+<div class="stars" id="stars"></div>
+
+<!-- 📜 Poema -->
+<div class="poem">
+  Y no me importa si el mundo no entiende<br>
+  que se puede amar sin haber rozado<br>
+  que hay almas que se buscan en la sombra<br>
+  y se encuentran incluso estando distanciado.<br><br>
+
+  Tal vez un día el tiempo nos conceda<br>
+  un abrazo que rompa esta distancia<br>
+  mientras tanto, me basta con tus mensajes<br>
+  Los que me hacen sentir tu presencia.
+</div>
+
+<!-- 🎵 Música automática desde GitHub -->
+<audio autoplay loop>
+  <source src="https://raw.githubusercontent.com/TU_USUARIO/TU_REPO/main/musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // 💖 Corazones en lluvia
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    const size = 10 + Math.random() * 20;
+    heart.style.width = `${size}px`;
+    heart.style.height = `${size}px`;
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    const colors = ['#ff4d4d', '#ff66cc', '#ff0000'];
+    heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    heart.style.animationDuration = `${2 + Math.random() * 3}s`;
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+
+  setInterval(() => {
+    for (let i = 0; i < 5; i++) createHeart();
+  }, 100);
+
+  // 🌠 Estrellas parpadeantes
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.animationDuration = `${1 + Math.random() * 2}s`;
+    starsContainer.appendChild(star);
+  }
+</script>
+
+</body>
+</html>
