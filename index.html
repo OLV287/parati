@@ -127,6 +127,33 @@
       }
     }
 
+    #play-music-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 9999;
+      background-color: #ff66cc;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      font-size: 20px;
+      box-shadow: 0 0 10px #ff66cc;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    #play-music-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #play-music-btn:hover {
+      background-color: #e055b5;
+    }
+
     @media (max-width: 600px) {
       .poem {
         font-size: 1.1rem;
@@ -155,12 +182,37 @@
 </div>
 
 <!-- 🎵 Música automática desde GitHub -->
-<audio autoplay loop>
+<audio id="bg-music" loop preload="auto">
   <source src="https://raw.githubusercontent.com/OLV287/parati/main/creo-en-tu-amor.mp3" type="audio/mpeg">
 </audio>
 
+<!-- 🎵 Botón flotante (solo si autoplay falla) -->
+<button id="play-music-btn" aria-label="Reproducir música">
+  🎵
+</button>
+
 <script>
-  // 💖 Corazones en lluvia
+  // 🎵 Reproducción de música
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('play-music-btn');
+
+  function tryPlay() {
+    music.play().then(() => {
+      btn.classList.remove('visible');
+    }).catch(() => {
+      btn.classList.add('visible');
+    });
+  }
+
+  window.addEventListener('load', tryPlay);
+
+  btn.addEventListener('click', () => {
+    music.play().then(() => {
+      btn.classList.remove('visible');
+    });
+  });
+
+  // 💖 Lluvia de corazones
   function crearCorazón() {
     const corazón = document.createElement('div');
     corazón.className = 'heart';
@@ -179,7 +231,7 @@
     for (let i = 0; i < 5; i++) crearCorazón();
   }, 100);
 
-  // ✨ Estrellas parpadeantes
+  // ✨ Estrellas
   const contenedorEstrellas = document.getElementById('stars');
   for (let i = 0; i < 100; i++) {
     const estrella = document.createElement('div');
@@ -193,10 +245,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
