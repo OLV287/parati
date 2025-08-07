@@ -55,10 +55,11 @@
       font-size: 1.3rem;
       line-height: 2rem;
       background: rgba(0, 0, 0, 0.6);
-      padding: 20px;
+      padding: 20px 20px 60px; /* espacio para audio */
       border-radius: 10px;
       box-shadow: 0 0 30px #ff66cc;
       animation: glow 4s ease-in-out infinite;
+      position: relative;
     }
 
     @keyframes glow {
@@ -128,21 +129,17 @@
     }
 
     #play-music-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 9999;
       background-color: #ff66cc;
       color: white;
       border: none;
-      padding: 10px 14px;
-      border-radius: 50%;
-      font-size: 20px;
-      box-shadow: 0 0 10px #ff66cc;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 16px;
       cursor: pointer;
       opacity: 0;
       transition: opacity 0.5s ease;
       pointer-events: none;
+      margin-top: 20px;
     }
 
     #play-music-btn.visible {
@@ -154,18 +151,28 @@
       background-color: #e055b5;
     }
 
+    audio {
+      display: none;
+    }
+
+    .audio-container {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
     @media (max-width: 600px) {
       .poem {
         font-size: 1.1rem;
         line-height: 1.6rem;
-        padding: 15px;
+        padding: 15px 15px 60px;
       }
     }
   </style>
 </head>
 <body>
 
-<!-- ✨ Estrellas -->
+<!-- 🌟 Estrellas -->
 <div class="stars" id="stars"></div>
 
 <!-- 📜 Poema -->
@@ -179,17 +186,17 @@
   un abrazo que rompa esta distancia<br>
   mientras tanto, me basta con tus mensajes<br>
   Los que me hacen sentir tu presencia.
+
+  <div class="audio-container">
+    <button id="play-music-btn" aria-label="Reproducir música">
+      🎵 Escuchar música
+    </button>
+  </div>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://raw.githubusercontent.com/OLV287/parati/main/creo-en-tu-amor.mp3" type="audio/mpeg">
+  </audio>
 </div>
-
-<!-- 🎵 Música automática desde GitHub -->
-<audio id="bg-music" loop preload="auto">
-  <source src="https://raw.githubusercontent.com/OLV287/parati/main/creo-en-tu-amor.mp3" type="audio/mpeg">
-</audio>
-
-<!-- 🎵 Botón flotante (solo si autoplay falla) -->
-<button id="play-music-btn" aria-label="Reproducir música">
-  🎵
-</button>
 
 <script>
   // 🎵 Reproducción de música
@@ -231,7 +238,7 @@
     for (let i = 0; i < 5; i++) crearCorazón();
   }, 100);
 
-  // ✨ Estrellas
+  // ✨ Estrellas parpadeantes
   const contenedorEstrellas = document.getElementById('stars');
   for (let i = 0; i < 100; i++) {
     const estrella = document.createElement('div');
