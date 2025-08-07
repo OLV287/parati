@@ -138,7 +138,7 @@
 </head>
 <body>
 
-<!-- 🌟 Estrellas -->
+<!-- ✨ Estrellas -->
 <div class="stars" id="stars"></div>
 
 <!-- 📜 Poema -->
@@ -161,38 +161,39 @@
 
 <script>
   // 💖 Corazones en lluvia
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    const size = 10 + Math.random() * 20;
-    heart.style.width = `${size}px`;
-    heart.style.height = `${size}px`;
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    const colors = ['#ff4d4d', '#ff66cc', '#ff0000'];
-    heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-    heart.style.animationDuration = `${2 + Math.random() * 3}s`;
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 5000);
+  function crearCorazón() {
+    const corazón = document.createElement('div');
+    corazón.className = 'heart';
+    const tamaño = 10 + Math.random() * 20;
+    corazón.style.width = `${tamaño}px`;
+    corazón.style.height = `${tamaño}px`;
+    corazón.style.left = Math.random() * window.innerWidth + 'px';
+    const colores = ['#ff4d4d', '#ff66cc', '#ff0000'];
+    corazón.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+    corazón.style.animationDuration = `${2 + Math.random() * 3}s`;
+    document.body.appendChild(corazón);
+    setTimeout(() => corazón.remove(), 5000);
   }
 
   setInterval(() => {
-    for (let i = 0; i < 5; i++) createHeart();
+    for (let i = 0; i < 5; i++) crearCorazón();
   }, 100);
 
-  // 🌠 Estrellas parpadeantes
-  const starsContainer = document.getElementById('stars');
+  // ✨ Estrellas parpadeantes
+  const contenedorEstrellas = document.getElementById('stars');
   for (let i = 0; i < 100; i++) {
-    const star = document.createElement('div');
-    star.className = 'star';
-    star.style.left = `${Math.random() * 100}%`;
-    star.style.top = `${Math.random() * 100}%`;
-    star.style.animationDuration = `${1 + Math.random() * 2}s`;
-    starsContainer.appendChild(star);
+    const estrella = document.createElement('div');
+    estrella.className = 'star';
+    estrella.style.left = `${Math.random() * 100}%`;
+    estrella.style.top = `${Math.random() * 100}%`;
+    estrella.style.animationDuration = `${1 + Math.random() * 2}s`;
+    contenedorEstrellas.appendChild(estrella);
   }
 </script>
 
 </body>
 </html>
+
 
 
 
